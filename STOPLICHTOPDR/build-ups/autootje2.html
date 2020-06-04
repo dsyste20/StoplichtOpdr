@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>autootje</title>
+    </head>
+    <style>
+        body {
+            background: url("../images/kruising.png");
+        }
+
+        .metingen {
+            width: 40px;
+            height: 80px;
+        }
+    </style>
+    <body>
+        <form>
+            <h1>autootje</h1>
+            <p>een autootje automatisch laten rijden</p>
+            <p>Druk op de juiste knop (maar een keer drukken)</p>
+            <input type="button" value="start" onclick="starten()">
+            <input type="button" value="stop" onclick="stop()">
+            <input type="button" value="opnieuw" onclick="opnieuw()">
+            <img id="auto" src="../images/autogroen.png" class="metingen">
+        </form>
+        <script>
+            //animatie
+            var rijden;
+
+            //variabelen
+            var auto =document.getElementById('auto');
+
+            //css?
+            auto.style.position = 'absolute';
+            auto.style.left = '650px';
+            auto.style.top = '800px';
+
+            //output
+            function starten() {
+                auto.style.top =parseInt(auto.style.top)-5+'px';
+
+                //om de 10 msec starten() aanroepen
+                rijden = setTimeout(starten, 10);
+            }
+
+            function stop() {
+                clearTimeout(rijden);
+            }
+
+            function opnieuw() {
+                clearTimeout(rijden);
+                auto.style.top ='800px';
+            }
+        </script>
+    </body>
+</html>

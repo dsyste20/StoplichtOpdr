@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>verkeer</title>
+    </head>
+    <style>
+        body {
+            background: url("../images/kruising.png");
+        }
+        .metingStoplicht {
+            width: 20px;
+            height: 40px;
+        }
+        .metingAutootje {
+            width: 40px;
+            height: 80px;
+        }
+
+    </style>
+    <body>
+        <form>
+            <h1>Verkeer</h1>
+            <p>Automatische auto en Stoplicht</p>
+            <p>Druk op de juiste knop (A.U.B. maar een keer drukken!)</p>
+            <!--stoplicht-->
+            <label>Stoplicht:</label>
+            <input type="button" value="aanzetten" onclick="aanzetten()">
+            <input type="button" value="knipperen" onclick="knipperen()">
+            <input type="button" value="uitzetten" onclick="uitzetten()">
+            <img id="stoplicht" src="../images/stoplichtuit.png" class="metingStoplicht">
+            <img id="stoplicht2" src="../images/stoplichtuit2.png" class="metingStoplicht">
+
+            <!--autootje-->
+            <br><br>
+            <label>Auto:</label>
+            <input type="button" value="start" onclick="starten()">
+            <input type="button" value="stop" onclick="stop()">
+            <input type="button" value="opnieuw" onclick="opnieuw()">
+            <img id="auto" src="../images/autogroen.png" class="metingAutootje">
+            <img id="auto2" src="../images/autorood3.png" class="metingAutootje">
+        </form>
+        <script src="kruising1.js"></script>
+    </body>
+</html>

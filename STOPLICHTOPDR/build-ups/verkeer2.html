@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>verkeer</title>
+    </head>
+    <style>
+        body {
+            background: url("../images/kruising.png");
+        }
+        .metingStoplicht {
+            width: 20px;
+            height: 40px;
+        }
+        .metingAutootje {
+            width: 40px;
+            height: 80px;
+        }
+
+    </style>
+    <body>
+        <form>
+            <h1>Verkeer</h1>
+            <p>Automatische auto en Stoplicht</p>
+            <p>Druk op de juiste knop (A.U.B. maar een keer drukken!)</p>
+            <!--stoplicht-->
+            <label>Stoplicht:</label>
+            <input type="button" value="aanzetten" onclick="aanzetten()">
+            <input type="button" value="knipperen" onclick="knipperen()">
+            <input type="button" value="uitzetten" onclick="uitzetten()">
+            <img id="stoplicht" src="../images/stoplichtuit.png" class="metingStoplicht">
+
+            <!--autootje-->
+            <br><br>
+            <label>Auto:</label>
+            <input type="button" value="start" onclick="starten()">
+            <input type="button" value="stop" onclick="stop()">
+            <input type="button" value="opnieuw" onclick="opnieuw()">
+            <img id="auto" src="../images/autogroen.png" class="metingAutootje">
+        </form>
+        <script>
+            //variabelen
+            var stoplicht = document.getElementById('stoplicht');
+            var auto =document.getElementById('auto');
+
+            //de 2 animaties
+            var werken;
+            var buitenwerking;
+            var rijden;
+
+            //stoplichct CSS?
+            stoplicht.style.position ='absolute';
+            stoplicht.style.left = '715px';
+            stoplicht.style.top = '510px';
+
+            //auto CSS?
+            auto.style.position = 'absolute';
+            auto.style.left = '650px';
+            auto.style.top = '800px';
+
+            //output Stoplicht
+            function aanzetten() {
+                clearTimeout(buitenwerking);
+                maakRood();
+                //na 4 seconden groen maken
+                werken = setTimeout(maakGroen, 4000);
+                //na 8 seconden geel maken
+                werken = setTimeout(maakGeel, 8000);
+                //na 10 seconden opnieuw aanzetten
+                werken = setTimeout(aanzetten, 10000);
+            }
+
+            function knipperen() {
+                clearTimeout(buitenwerking);
+                maakGeel();
+                //na 500 msec uitzetten
+                buitenwerking = setTimeout(zetUit, 500);
+                //na 500 msec weer knipperen
+                buitenwerking = setTimeout(knipperen, 1000);
+            }
+
+            function uitzetten() {
+                //zet de animatie van de stoplicht uit
+                zetUit();
+                clearTimeout(buitenwerking);
+                clearTimeout(werken);
+            }
+
+            function maakRood() {
+                stoplicht.src = "../images/stoplichtrood.png";
+            }
+
+            function maakGroen() {
+                stoplicht.src = "../images/stoplichtgroen.png";
+            }
+
+            function maakGeel() {
+                stoplicht.src = "../images/stoplichtgeel.png";
+            }
+
+            function zetUit() {
+                //laat de plaatje van de stoplicht zien waar alle lampjes uit zijn
+                stoplicht.src = "../images/stoplichtuit.png";
+            }
+
+            //output Autootje
+            function starten() {
+                auto.style.top = parseInt(auto.style.top)-5+'px';
+
+                //om de 10 msec starten() aanroepen
+                rijden = setTimeout(starten, 10);
+
+                //continue autootje
+                if(parseInt(auto.style.top)<-80) {
+                    auto.style.top = '900px';
+                }
+            }
+
+            function stop() {
+                clearTimeout(rijden);
+            }
+
+            function opnieuw() {
+                clearTimeout(rijden);
+                auto.style.top ='800px';
+            }
+        </script>
+    </body>
+</html>

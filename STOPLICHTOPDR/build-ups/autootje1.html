@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>autootje</title>
+    </head>
+    <style>
+        body {
+            background: url("../images/kruising.png");
+        }
+
+        .metingen {
+            width: 40px;
+            height: 80px;
+        }
+    </style>
+    <body>
+        <form>
+            <h1>autootje</h1>
+            <p>een trapautootje laten rijden</p>
+            <p>Druk op de knop om een stukje te rijden</p>
+            <input type="button" value="start" onclick="starten()">
+            <input type="button" value="opnieuw" onclick="opnieuw()">
+            <img id="auto" src="../images/autogroen.png" class="metingen">
+        </form>
+        <script>
+            var auto =document.getElementById('auto');
+
+            //css?
+            auto.style.position = 'absolute';
+            auto.style.left = '650px';
+            auto.style.top = '700px';
+
+            //output
+            function starten() {
+                auto.style.top =parseInt(auto.style.top)-5+'px';
+            }
+
+            function opnieuw() {
+                auto.style.top ='800px';
+            }
+        </script>
+    </body>
+</html>
